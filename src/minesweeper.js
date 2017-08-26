@@ -1,16 +1,21 @@
-// Hardcoded rows
-const blankLine = '  |   |  '; // Empty row
-const guessLine = '1 |   |  '; // First square selected
-const bombLine = '  | B |  '; // Bomb in center square
+// Format game board
+const printBoard = board => {
+  console.log('Current Board: ');
+  console.log(board[0].join(' | '));
+  console.log(board[1].join(' | '));
+  console.log(board[2].join(' | '));
+};
 
-// Empty game board
-console.log('This is what an empty board would look like:');
-console.log(blankLine);
-console.log(blankLine);
-console.log(blankLine);
+// Create game board structure
+const board = [
+  [' ', ' ', ' '],
+  [' ', ' ', ' '],
+  [' ', ' ', ' ']
+];
 
-// Simulated game board
-console.log('This is what a board with a guess and a bomb on it would look like');
-console.log(guessLine);
-console.log(bombLine);
-console.log(blankLine);
+printBoard(board);
+
+// Hardcoded board
+board[0][1] = '1'; // player's guess
+board[2][2] = 'B'; // bomb on the board
+printBoard(board);
