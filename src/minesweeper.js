@@ -17,7 +17,7 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
     for (let columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
       row.push(null);
     } board.push(row);
-  }
+  };
 
   // Place bombs
   let numberOfBombsPlaced = 0;
@@ -29,6 +29,24 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
       numberOfBombsPlaced++;
     }
   } return board;
+};
+
+// Return the number of bombs in an adjacent neighbor
+const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
+  const neighborOffsets = [[-1, 1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
+  const numberOfRows = bombBoard.length;
+  const numberOfColumns = bombBoard[0].length;
+  let numberOfBombs = 0;
+  neighborOffsets.forEach(offset => {
+    const neighborRowIndex = rowIndex + offset[0];
+    const neighborColumnIndex = columnIndex + offset[1];
+    if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows && neighborColumnIndex >= 0 && neighborColumnIndex < numberOfColumns) {
+      if (bombBoard[neighborRowIndex][neighborColumnIndex] === 'B') {
+        numberOfBombs++;
+      }
+    }
+  });
+  return numberOfBombs;
 };
 
 // Format board
