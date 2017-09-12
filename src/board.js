@@ -1,23 +1,4 @@
-class Game {
-  constructor(numberOfRows, numberOfColumns, numberOfBombs) {
-    this._board = new Board(numberOfRows, numberOfColumns, numberOfBombs);
-  }
-
-  playMove(rowIndex, columnIndex) {
-    this._board.flipTile(rowIndex, columnIndex);
-    if (this._board.playerBoard[rowIndex][columnIndex] === 'B') {
-      console.log('You hit a bomb. Game over!');
-      this._board.print();
-    } else if (this._board.hasSafeTiles() === 'false') {
-      console.log('You win!');
-    } else {
-      console.log('Current Board: ');
-      this._board.print();
-    }
-  }
-}
-
-class Board {
+export class Board {
   constructor(numberOfRows, numberOfColumns, numberOfBombs) {
     this._numberOfBombs = numberOfBombs;
     this._numberOfTiles = numberOfRows * numberOfColumns; // used to determine if the game is over or not at the end of each turn
@@ -104,24 +85,3 @@ class Board {
     return board;
   }
 }
-
-// Create an instance of Game
-const g = new Game(5, 5, 9);
-
-// Play a move
-g.playMove(0,0);
-
-/*
-// Create and print boards
-let playerBoard = generatePlayerBoard(3, 4);
-let bombBoard = generateBombBoard(3, 4, 5);
-
-console.log('Player Board: ');
-printBoard(playerBoard);
-console.log('Bomb Board: ');
-printBoard(bombBoard);
-
-flipTile(playerBoard, bombBoard, 0, 0);
-console.log('Updated Player Board: ');
-printBoard(playerBoard);
-*/
